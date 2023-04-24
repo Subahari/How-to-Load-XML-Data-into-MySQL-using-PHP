@@ -36,11 +36,11 @@ foreach ($xml->children() as $row) {
     $CC = $row->NetworkList->Network->NetworkData->RoutingInfoSection->RoutingInfo->CCITT_E164_NumberSeries->MSISDN_NumberRanges->RangeData->NumberRange->CC;
 
     // Get all the NDC values from the RangeData elements and insert them into the database
-    foreach ($row->NetworkList->Network->NetworkData->RoutingInfoSection->RoutingInfo->CCITT_E164_NumberSeries->MSISDN_NumberRanges->RangeData as $rangeData) {
-        $NDC = $rangeData->NumberRange->NDC;
+   // foreach ($row->NetworkList->Network->NetworkData->RoutingInfoSection->RoutingInfo->CCITT_E164_NumberSeries->MSISDN_NumberRanges->RangeData as $rangeData) {
+        //$NDC = $rangeData->NumberRange->NDC;
 
         // SQL query to insert data into organizationinformation table
-        $sql = "INSERT INTO xml(OrganisationName, CountryInitials, TADIGCode, NetworkName, NetworkType, MCC, MNC,MGT_CC,MGT_NC,CC,NDC) VALUES ('" . $OrganisationName . "',' " .$CountryInitials . "','" . $TADIGCode . "','" . $NetworkName . "','" . $NetworkType . "','" . $MCC . "','" . $MNC . "','" .$MGT_CC ."','" .$MGT_NC  ."','" . $CC . "', '" . $NDC . "')";
+        $sql = "INSERT INTO xml(OrganisationName, CountryInitials, TADIGCode, NetworkName, NetworkType, MCC, MNC,MGT_CC,MGT_NC,CC) VALUES ('" . $OrganisationName . "',' " .$CountryInitials . "','" . $TADIGCode . "','" . $NetworkName . "','" . $NetworkType . "','" . $MCC . "','" . $MNC . "','" .$MGT_CC ."','" .$MGT_NC  ."','" . $CC . "')";
 
         $result = mysqli_query($conn, $sql);
 
@@ -49,7 +49,7 @@ foreach ($xml->children() as $row) {
         } else {
             $errorMessages[] = mysqli_error($conn);
         }
-    }
+   // }
 }
 
 // Close database connection
