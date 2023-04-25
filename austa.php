@@ -31,16 +31,16 @@ foreach ($xml->children() as $row) {
     $NetworkType = $row->NetworkList->Network->NetworkType;
     $MCC = $row->NetworkList->Network->NetworkData->RoutingInfoSection->RoutingInfo->CCITT_E212_NumberSeries->MCC;
     $MNC = $row->NetworkList->Network->NetworkData->RoutingInfoSection->RoutingInfo->CCITT_E212_NumberSeries->MNC;
-    $MGT_CC = $row->NetworkList->Network->NetworkData->RoutingInfoSection->RoutingInfo->CCITT_E214_MGT->MGT_CC;
-    $MGT_NC = $row->NetworkList->Network->NetworkData->RoutingInfoSection->RoutingInfo->CCITT_E214_MGT->MGT_NC;
-    $CC = $row->NetworkList->Network->NetworkData->RoutingInfoSection->RoutingInfo->CCITT_E164_NumberSeries->MSISDN_NumberRanges->RangeData->NumberRange->CC;
+   // $MGT_CC = $row->NetworkList->Network->NetworkData->RoutingInfoSection->RoutingInfo->CCITT_E214_MGT->MGT_CC;
+    //$MGT_NC = $row->NetworkList->Network->NetworkData->RoutingInfoSection->RoutingInfo->CCITT_E214_MGT->MGT_NC;
+    //$CC = $row->NetworkList->Network->NetworkData->RoutingInfoSection->RoutingInfo->CCITT_E164_NumberSeries->MSISDN_NumberRanges->RangeData->NumberRange->CC;
 
     // Get all the NDC values from the RangeData elements and insert them into the database
-   // foreach ($row->NetworkList->Network->NetworkData->RoutingInfoSection->RoutingInfo->CCITT_E164_NumberSeries->MSISDN_NumberRanges->RangeData as $rangeData) {
+    //foreach ($row->NetworkList->Network->NetworkData->RoutingInfoSection->RoutingInfo->CCITT_E164_NumberSeries->MSISDN_NumberRanges->RangeData as $rangeData) {
         //$NDC = $rangeData->NumberRange->NDC;
 
         // SQL query to insert data into organizationinformation table
-        $sql = "INSERT INTO xml(OrganisationName, CountryInitials, TADIGCode, NetworkName, NetworkType, MCC, MNC,MGT_CC,MGT_NC,CC) VALUES ('" . $OrganisationName . "',' " .$CountryInitials . "','" . $TADIGCode . "','" . $NetworkName . "','" . $NetworkType . "','" . $MCC . "','" . $MNC . "','" .$MGT_CC ."','" .$MGT_NC  ."','" . $CC . "')";
+        $sql = "INSERT INTO xml(OrganisationName, CountryInitials, TADIGCode, NetworkName, NetworkType, MCC, MNC) VALUES ('" . $OrganisationName . "',' " .$CountryInitials . "','" . $TADIGCode . "','" . $NetworkName . "','" . $NetworkType . "','" . $MCC . "','" . $MNC . "')";
 
         $result = mysqli_query($conn, $sql);
 
